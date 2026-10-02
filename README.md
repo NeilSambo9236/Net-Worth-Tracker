@@ -1,24 +1,23 @@
 # Net Worth Tracker
 
-A simple Python CLI application for tracking personal net worth using an Excel spreadsheet.
+A Python CLI application for managing personal net worth data stored in Excel.
 
-I made this because I was repeatedly opening the Excel file, finding the right cell, changing an amount, saving it, and closing the file. This program lets me make those updates directly from the terminal instead.
+I built this to avoid repeatedly opening Excel, finding cells, editing amounts, saving, and closing the file. Instead, I can make those updates directly from the terminal.
 
 ## Features
 
 * View financial entries
-* Calculate total net worth
-* Change an existing amount
-* Add a new financial entry
-* Remove an entry
-* Save changes directly to Excel
+* Calculate net worth
+* Update existing amounts
+* Add and remove entries
+* Save changes to Excel
 * Validate user input
 
 ## Tech Stack
 
 * **Python** — application logic and CLI
-* **pandas** — working with tabular data
-* **openpyxl** — reading and writing Excel files
+* **pandas** — tabular data manipulation
+* **openpyxl** — Excel file handling
 * **Excel** — data storage
 
 ## Project Structure
@@ -28,31 +27,15 @@ net-worth-tracker/
 ├── main.py
 ├── helper.py
 ├── update.py
-├── net_worth.xlsx
+├── Net Worth Tracker.bat
 └── README.md
 ```
 
-### `main.py`
-
-Handles the main program flow, menu, and user interaction.
-
-### `helper.py`
-
-Contains functions for displaying the menu and handling user input.
-
-### `update.py`
-
-Contains functions for reading, modifying, calculating, and saving the financial data.
-
-### `net_worth.xlsx`
-
-Stores the financial entries used by the program.
+`main.py` handles the program flow and menu, `helper.py` contains input and display functions, and `update.py` handles the Excel data operations.
 
 ## How It Works
 
-The program loads the Excel file into a pandas DataFrame when it starts.
-
-From the terminal, I can choose what I want to do:
+The program loads the Excel data into a pandas DataFrame and provides a menu for viewing and modifying financial entries.
 
 ```text
 1. View data
@@ -63,28 +46,22 @@ From the terminal, I can choose what I want to do:
 6. Exit
 ```
 
-After making a change, the program saves the updated DataFrame back to the Excel file.
+Changes are saved back to the Excel file after an update.
 
-## Running the Project
+## Running
 
-Install the required libraries:
+Install the dependencies:
 
 ```bash
 pip install pandas openpyxl
 ```
 
-Then run:
+Run the program:
 
 ```bash
 python main.py
 ```
 
-The `net_worth.xlsx` file should be in the same directory as the Python files.
+On Windows, `Net Worth Tracker.bat` can also be used to launch it.
 
-## Why I Built It
-
-This started as a small personal automation.
-
-I regularly update my financial information, but doing it manually meant repeatedly opening Excel, locating cells, editing values, saving the file, and closing it.
-
-Instead of doing the same thing over and over, I built a small CLI tool to handle the updates for me.
+The personal `net_worth.xlsx` file is excluded from the repository.
