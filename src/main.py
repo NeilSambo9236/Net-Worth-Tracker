@@ -1,7 +1,9 @@
 from helper import (
     print_menu, 
-    get_user_input, 
+    get_int_user_input, 
+    get_float_user_input, 
     get_str_user_input, 
+    print_amount_updater_choices, 
     print_line
 )
 
@@ -10,6 +12,8 @@ from update import (
     show_sorted_excel_data, 
     get_net_worth, 
     change_amount, 
+    add_amount, 
+    subtract_amount, 
     save_excel, 
     add_a_row, 
     remove_a_row
@@ -24,7 +28,7 @@ def main() :
         print_line()
         print_menu()
         input_type = "menu choice"
-        user_choice = get_user_input("Enter the number: ", input_type, None)
+        user_choice = get_int_user_input("Enter the number: ", input_type, None)
         print_line()
         
         if user_choice == 1 :
@@ -41,12 +45,25 @@ def main() :
             print(f"{df}\n")
             
             input_type = "row choice"
-            row_id = get_user_input("Enter the row id: ", input_type, df)
+            row_id = get_int_user_input("Enter the row id: ", input_type, df)
             print(f"You chose: \n{df.loc[row_id]}")
             
-            money_amount = get_user_input("Enter the amount: ", None, None)
+            print_amount_updater_choices()
+            input_type = "amount updater"
+            amount_updater_choice = get_str_user_input("Enter how you want to update the amount: ", input_type, None)
             
-            change_amount(df, row_id, money_amount)
+            if amount_updater_choice == "1" :
+                money_amount = get_float_user_input("Enter the amount to change: ")
+                change_amount(df, row_id, money_amount)
+                
+            elif amount_updater_choice == "2" :
+                money_amount_to_add = get_float_user_input("Enter the amount to add: ")
+                add_amount(df, row_id, money_amount_to_add)
+                
+            else :
+                money_amount_to_subtract = get_float_user_input("Enter the amount to subtract: ")
+                subtract_amount(df, row_id, money_amount_to_subtract)
+                
             save_excel(df, excel)
             print(f"Row {row_id} changed!")
         
@@ -55,7 +72,7 @@ def main() :
             money_source = get_str_user_input("Enter the money source: ", input_type, df)
             input_type = "type"
             money_type = get_str_user_input("Enter if it is a receivable or owned: ", input_type, None)
-            amount = get_user_input("Enter the amount: ", None, None)
+            amount = get_float_user_input("Enter the amount: ")
             
             new_df = add_a_row(df, money_source, money_type, amount)
             save_excel(new_df, excel)
@@ -65,7 +82,7 @@ def main() :
             print(f"{df}\n")
                         
             input_type = "row choice"
-            row_id = get_user_input("Enter the row id: ", input_type, df)
+            row_id = get_int_user_input("Enter the row id: ", input_type, df)
             print(f"You chose: \n{df.loc[row_id]}")
             
             input_type = "verify"
