@@ -46,7 +46,7 @@ def get_float_user_input(query) :
         try :
             user_input = float(user_input)
             
-            if user_input <= 0 :
+            if user_input < 0 :
                 print("Cannot put negative values! ", end="")
                 continue
             
